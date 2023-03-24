@@ -16,6 +16,7 @@ func shoot(target_position):
 	projectile.direction = projectile_direction
 	projectile.global_position = global_position + projectile_direction * PROJECTILE_DIST
 
-
 func _on_Timer_timeout():
+	if player == null:
+		return
 	shoot(player.global_position)

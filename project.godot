@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "StaticBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Enemy.gd"
+}, {
+"base": "Node2D",
+"class": "GameRoom",
+"language": "GDScript",
+"path": "res://Room.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player.gd"
 } ]
 _global_script_class_icons={
+"Enemy": "",
+"GameRoom": "",
 "Player": ""
 }
 
@@ -27,6 +39,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Shooting="*res://Shooting.gd"
+GameRoomManager="*res://GameRoomManager.gd"
 
 [display]
 

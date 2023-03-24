@@ -10,6 +10,7 @@ var speed = 500
 var can_shoot=true
 
 func _ready():
+	add_to_group("Players")
 	Shooting.register_player(self)
 
 func shoot(direction):

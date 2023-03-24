@@ -12,4 +12,4 @@ func _physics_process(delta):
 
 func set_direction(dir):
 	direction = dir
-	look_at(position + dir)
+	look_at(global_position + dir)
