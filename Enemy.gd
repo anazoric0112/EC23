@@ -23,6 +23,8 @@ func shoot(target_position):
 	projectile.global_position = global_position + projectile_direction * PROJECTILE_DIST
 	projectile.speed = projectile_speed
 	projectile.damage = damage
+	projectile.set_collision_layer_bit(1, false)
+	projectile.set_collision_layer_bit(3, true)
 
 func _on_Timer_timeout():
 	if player == null:
@@ -32,3 +34,11 @@ func _on_Timer_timeout():
 func _on_CollisionArea_body_entered(body):
 	if body.is_in_group("Projectiles"):
 		body.on_hit(self)
+		
+
+func take_damage(damage):
+	curr_hp -= damage
+	if curr_hp <= 0:
+		print("AAAAAGGHHH")
+		queue_free()
+	print("OUCH; my current hp is " + str(curr_hp))

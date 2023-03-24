@@ -8,6 +8,8 @@ var velocity
 var is_flipped = false
 var speed = 500
 var can_shoot=true
+var max_hp = 500
+var curr_hp = max_hp
 
 func _ready():
 	add_to_group("Players")
@@ -55,3 +57,6 @@ func _physics_process(_delta):
 func _on_CollisionArea_body_entered(body):
 	if body.is_in_group("Projectiles"):
 		body.on_hit(self)
+
+func take_damage(damage):
+	curr_hp -= damage
