@@ -18,8 +18,8 @@ func set_direction(dir):
 	look_at(global_position + dir)
 
 func on_hit(target):
-	if (target != null):
-		target.on_hit()
+#	if (target != null):
+#		target.on_hit()
 	print("HIT!")
 	queue_free()
 
