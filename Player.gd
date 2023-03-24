@@ -52,3 +52,6 @@ func _physics_process(_delta):
 	get_shoot_input()
 	move_and_collide(velocity * _delta * speed)
 
+func _on_CollisionArea_body_entered(body):
+	if body.is_in_group("Projectiles"):
+		body.on_hit(self)
