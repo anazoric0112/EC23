@@ -61,6 +61,9 @@ func _on_Enemy_body_entered(body):
 		body.take_damage(body_damage)
 		body.invincible(0.5)
 
+func stop():
+	$Timer.stop()
+	
 func set_type(type):
 	match type:
 		GameRoomManager.TYPE.FIRE:

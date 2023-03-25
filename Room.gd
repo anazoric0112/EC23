@@ -54,3 +54,6 @@ func generate_portals():
 func set_player(new_player):
 	player = new_player
 	player.position = position + Vector2(320, 360)
+	
+func get_enemies():
+	return $Enemies.get_children()

@@ -22,4 +22,5 @@ func on_hit(target):
 		target.take_damage(damage)
 	queue_free()
 
-
+func stop():
+	direction = Vector2(0, 0)
