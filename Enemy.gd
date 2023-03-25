@@ -21,6 +21,7 @@ func _ready():
 func set_reload_time(value):
 	reload_time = value
 	$Timer.wait_time = value
+	$Timer.start()
 
 func shoot(target_position):
 	var projectile = Projectile.instance()

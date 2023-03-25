@@ -54,6 +54,14 @@ func _physics_process(_delta):
 	get_move_input()
 	get_shoot_input()
 	move_and_slide(velocity * speed)
+	if velocity != Vector2(0, 0) and $AnimatedSprite.animation != "run":
+		$AnimatedSprite.play("run")
+	if velocity == Vector2(0, 0) and $AnimatedSprite.animation != "idle":
+		$AnimatedSprite.play("idle")
+	if velocity.x < 0 and !$AnimatedSprite.flip_h:
+		$AnimatedSprite.flip_h = true
+	if velocity.x > 0 and $AnimatedSprite.flip_h:
+		$AnimatedSprite.flip_h = false
 
 func _on_CollisionArea_body_entered(body):
 	if body.is_in_group("Projectiles"):
