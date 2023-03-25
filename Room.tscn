@@ -51,3 +51,5 @@ collision_mask = 0
 shape = SubResource( 2 )
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemyLocations" type="Node2D" parent="."]

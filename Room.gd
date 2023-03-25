@@ -11,7 +11,8 @@ const PORTAL_LOCATIONS = [
 	Vector2(616, 312)
 ]
 
-var num_monsters = 3
+var num_monsters_min = 2
+var num_monsters_max = 4
 var difficulty = 1
 var type = GameRoomManager.TYPE.FIRE
 var player
@@ -20,17 +21,23 @@ func _ready():
 	spawn_enemies()
 
 func spawn_enemies():
-	for i in range(num_monsters):
-		spawn_enemy()
+	var positions = $EnemyLocations.get_children()
+	positions.randomize()
+	for i in range(randi() % (num_monsters_max - num_monsters_min + 1) + num_monsters_min):
+		var enemy = spawn_enemy()
+		if positions.size() > 0:
+			enemy.position = positions[i].position
+		else:
+			enemy.position = Vector2(
+				rand_range(40, 600),
+				rand_range(40, 680)
+			)
 
 func spawn_enemy():
 	var enemy = Enemy.instance()
 	$Enemies.add_child(enemy)
-	enemy.position = Vector2(
-		rand_range(40, 600),
-		rand_range(40, 680)
-	)
 	enemy.player = player
+	return enemy
 
 func generate_portals():
 	var angle = 0
