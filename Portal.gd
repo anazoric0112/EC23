@@ -5,7 +5,7 @@ var room_type = GameRoomManager.TYPE.FIRE
 signal player_entered
 
 func _ready():
-	room_type = GameRoomManager.TYPE.keys()[randi() % GameRoomManager.TYPE.size()]
+	room_type = GameRoomManager.TYPE.values()[randi() % GameRoomManager.TYPE.size()]
 	connect("player_entered", GameRoomManager, "generate_rooms")
 
 func _on_Area2D_body_entered(body):

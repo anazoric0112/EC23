@@ -4,7 +4,7 @@ class_name Enemy
 const Projectile = preload("res://Projectile.tscn")
 const PROJECTILE_DIST = 40
 var player
-var reload_time = 1500
+var reload_time = 1500 setget set_reload_time
 var projectile_speed = 200
 var max_hp = 30
 var curr_hp = max_hp
@@ -12,10 +12,15 @@ var damage = 10
 var body_damage = 40
 var alive = true
 
+var level = 0
+
 func _ready():
-	$Timer.wait_time = reload_time * 1.0 / 1000
-	$Timer.start()
 	GameRoomManager.enemy_count += 1
+	level = GameRoomManager.level
+
+func set_reload_time(value):
+	reload_time = value
+	$Timer.wait_time = value
 
 func shoot(target_position):
 	var projectile = Projectile.instance()
@@ -54,3 +59,24 @@ func _on_Enemy_body_entered(body):
 	if body.is_in_group("Players"):
 		body.take_damage(body_damage)
 		body.invincible(0.5)
+
+func set_type(type):
+	match type:
+		GameRoomManager.TYPE.FIRE:
+			self.reload_time = (rand_range(1000, 1500) - 50 * level) / 1000
+			projectile_speed = 400
+			max_hp = 60 + 10 * level
+			curr_hp = max_hp
+			damage = 15 + 2 * level
+		GameRoomManager.TYPE.ICE:
+			self.reload_time = (rand_range(1200, 1700) - 40 * level) / 1000
+			projectile_speed = 300
+			max_hp = 75 + 15 * level
+			curr_hp = max_hp
+			damage = 20 + 3 * level
+		GameRoomManager.TYPE.GRASS:
+			self.reload_time = (rand_range(1500, 2000) - 30 * level) / 1000
+			projectile_speed = 200
+			max_hp = 125 + 25 * level
+			curr_hp = max_hp
+			damage = 30 + 4 * level

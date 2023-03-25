@@ -8,7 +8,7 @@ func add_rooms(room_left, room_right):
 		room_right.queue_free()
 		return
 	adding_rooms = true
-	$Tween.interpolate_property($ColorRect, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), .5)
+	$Tween.interpolate_property($ColorRect, "modulate:a", 0, 1, .5)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
 	for room in $Rooms.get_children():
@@ -19,7 +19,7 @@ func add_rooms(room_left, room_right):
 	room_right.global_position = Vector2(640, 0)
 	room_right.set_player($PlayerRight)
 	$Rooms.call_deferred("add_child", room_right)
-	$Tween.interpolate_property($ColorRect, "self_modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5)
+	$Tween.interpolate_property($ColorRect, "modulate:a", 1, 0, .5)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
 	adding_rooms = false
