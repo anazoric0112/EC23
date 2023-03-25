@@ -59,4 +59,5 @@ func _on_CollisionArea_body_entered(body):
 		body.on_hit(self)
 
 func take_damage(damage):
+	print("OUCH I took " + str(damage))
 	curr_hp -= damage

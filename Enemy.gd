@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 class_name Enemy
 
 const Projectile = preload("res://Projectile.tscn")
@@ -9,6 +9,8 @@ var projectile_speed = 300
 var max_hp = 30
 var curr_hp = max_hp
 var damage = 10
+var body_damage = 40
+var alive = true
 
 func _ready():
 	$Timer.wait_time = reload_time * 1.0 / 1000
@@ -32,10 +34,6 @@ func _on_Timer_timeout():
 		return
 	shoot(player.global_position)
 
-func _on_CollisionArea_body_entered(body):
-	if body.is_in_group("Projectiles"):
-		body.on_hit(self)
-		
 
 func take_damage(damage):
 	curr_hp -= damage
@@ -43,6 +41,16 @@ func take_damage(damage):
 		die()
 
 func die():
+	if not alive:
+		return
+	alive = false
 	GameRoomManager.enemy_count -= 1
 	print("Dead, enemy count: " + str(GameRoomManager.enemy_count))
 	queue_free()
+
+
+func _on_Enemy_body_entered(body):	
+	if body.is_in_group("Projectiles"):
+		body.on_hit(self)
+	if body.is_in_group("Players"):
+		body.take_damage(body_damage)
