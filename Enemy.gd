@@ -109,7 +109,7 @@ func _on_Explosions_animation_finished():
 
 
 func _on_Sprite_animation_finished():
-	if player == null:
+	if player == null or GameRoomManager.game_over:
 		return
 	if $Sprite.animation == "Idle":
 		return

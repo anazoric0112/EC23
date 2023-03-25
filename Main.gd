@@ -2,9 +2,6 @@ extends Node2D
 
 var adding_rooms = false
 
-func _ready():
-	GameRoomManager.generate_rooms(GameRoomManager.TYPE.ICE)
-
 func add_rooms(room_left, room_right):
 	if adding_rooms:
 		room_left.queue_free()
@@ -45,14 +42,17 @@ func upgrade_players():
 	match type:
 		GameRoomManager.TYPE.FIRE:
 			print("Upgrading RELOAD")
+			blink_text("RELOAD SPEED UPGRADED !!!")
 			$PlayerLeft.reduce_reload_time()
 			$PlayerRight.reduce_reload_time()
 		GameRoomManager.TYPE.ICE:
 			print("Upgrading DAMAGE")
+			blink_text("DAMAGE_UPGRADED !!!")
 			$PlayerLeft.damage += 20
 			$PlayerRight.damage += 20
 		GameRoomManager.TYPE.GRASS:
 			print("Upgrading HP")
+			blink_text("HP UPGRADED !!!")
 			$PlayerLeft.max_hp += 100
 			$PlayerLeft.curr_hp += 100
 			$PlayerLeft.update_hp_bar()
@@ -61,6 +61,7 @@ func upgrade_players():
 			$PlayerRight.update_hp_bar()
 		GameRoomManager.TYPE.MOON:
 			print("Upgrading SPEED")
+			blink_text("SPEED UPGRADED !!!")
 			$PlayerLeft.speed += 60
 			$PlayerRight.speed += 60
 
@@ -71,6 +72,7 @@ func _on_PlayerRight_died():
 	game_over()
 
 func game_over():
+	GameRoomManager.game_over = true
 	$GameOver.visible = true
 	$PlayerLeft.dead = true
 	$PlayerRight.dead = true
@@ -79,3 +81,17 @@ func game_over():
 			enemy.stop()
 	$PlayerLeft.on_die()
 	$PlayerRight.on_die()
+
+func blink_text(text):
+	$InfoScreen.text = text
+	for i in range(3):
+		$InfoScreen.show()
+		yield(get_tree().create_timer(.3), "timeout")
+		$InfoScreen.hide()
+		yield(get_tree().create_timer(.3), "timeout")
+
+func _input(event):
+	if event is InputEventKey:
+		if event.scancode == KEY_SPACE and event.is_pressed():
+			$StartGame.queue_free()
+			GameRoomManager.generate_rooms(GameRoomManager.TYPE.ICE)

@@ -17,6 +17,8 @@ var enemy_count = 0 setget set_enemy_count
 var level = 0
 var score = 0
 
+var game_over = false
+
 func generate_rooms(room_type):
 	print("Generating rooms of type " + str(room_type))
 	var room_left = Rooms[randi() % Rooms.size()].instance()
