@@ -8,6 +8,8 @@ const ice_icon = preload("res://Pixels/Icons/IceSet-5.png.png")
 const grass_icon = preload("res://Pixels/Icons/IceSet-6.png.png")
 
 const fire = preload("res://Pixels/Fire/IceSet_w-2.png-1.png (2).png")
+const ice = preload("res://Pixels/Ice/IceSet_ww-1.png.png")
+const grass = preload("res://Pixels/Grass/New Piskel-10.png (2).png")
 
 func _ready():
 	room_type = GameRoomManager.TYPE.values()[randi() % GameRoomManager.TYPE.size()]
@@ -35,3 +37,7 @@ func set_old_type(type):
 	match type:
 		GameRoomManager.TYPE.FIRE:
 			$Sprite.texture = fire
+		GameRoomManager.TYPE.ICE:
+			$Sprite.texture = ice
+		GameRoomManager.TYPE.GRASS:
+			$Sprite.texture = grass

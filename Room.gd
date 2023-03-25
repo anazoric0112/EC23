@@ -6,6 +6,13 @@ const Portal = preload("res://Portal.tscn")
 
 const ice_bg = preload("res://Pixels/Ice/ice_final.png")
 const fire_bg = preload("res://Pixels/Fire/fire_final.png")
+const grass_bg = preload("res://Pixels/Grass/grass_final.png")
+const ice_wall = preload("res://Pixels/Ice/IceSet_w-2.png-1.png (1).png")
+const fire_wall = preload("res://Pixels/Fire/New Piskel-3.png.png")
+const grass_wall = preload("res://Pixels/Grass/lake4.png")
+const ice_corner = preload("res://Pixels/Ice/IceSet_w-2.png-2.png.png")
+const fire_corner = preload("res://Pixels/Fire/New Piskel-4.png.png")
+const grass_corner = preload("res://Pixels/Grass/lake3.png")
 
 const PORTAL_LOCATIONS = [
 	Vector2(312, 696),
@@ -67,10 +74,25 @@ func set_type(new_type):
 		GameRoomManager.TYPE.ICE:
 			$Sprite.texture = ice_bg
 		GameRoomManager.TYPE.GRASS:
-			pass
+			$Sprite.texture = grass_bg
 	for wall in $Walls.get_children():
 		wall.set_type(new_type)
-	
+	for corner in $Corners.get_children():
+		match type:
+			GameRoomManager.TYPE.FIRE:
+				corner.texture = fire_corner
+			GameRoomManager.TYPE.ICE:
+				corner.texture = ice_corner
+			GameRoomManager.TYPE.GRASS:
+				corner.texture = grass_corner
+	for wall in $Idk.get_children():
+		match type:
+			GameRoomManager.TYPE.FIRE:
+				wall.texture = fire_wall
+			GameRoomManager.TYPE.ICE:
+				wall.texture = ice_wall
+			GameRoomManager.TYPE.GRASS:
+				wall.texture = grass_wall
 
 func get_enemies():
 	return $Enemies.get_children()

@@ -6,10 +6,10 @@
 [ext_resource path="res://Pixels/Ice/IceSet_w-2.png-1.png (1).png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24, 360 )
+extents = Vector2( 10, 360 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 320, 24 )
+extents = Vector2( 320, 10 )
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 1 )
