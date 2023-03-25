@@ -10,7 +10,7 @@ var velocity
 var is_flipped = false
 var speed = 400
 var projectile_speed = 700
-var max_hp = 50
+var max_hp = 500
 var curr_hp = max_hp
 var dead = false
 
@@ -57,6 +57,8 @@ func try_shoot(direction):
 		Shooting.all_shoot((direction - global_position).normalized())
 
 func _physics_process(_delta):
+	if dead:
+		return
 	get_move_input()
 	get_shoot_input()
 	move_and_slide(velocity * speed)
@@ -77,10 +79,14 @@ func take_damage(damage):
 	if $InvincibleTimer.time_left > 0:
 		return
 	curr_hp -= damage
+	invincible(.5)
 	if curr_hp <= 0:
 		dead = true
 		emit_signal("died")
 	print("OUCH I just took " + str(damage) + " damage")
+
+func on_die():
+	$AnimatedSprite.play("die")
 
 func invincible(time):
 	$InvincibleTimer.start(time)

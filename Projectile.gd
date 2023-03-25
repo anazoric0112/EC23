@@ -3,7 +3,7 @@ extends KinematicBody2D
 var direction setget set_direction
 
 var speed = 300
-var damage = 10
+var damage = 40
 
 func _ready():
 	add_to_group("Projectiles")

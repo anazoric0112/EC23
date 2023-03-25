@@ -4,6 +4,9 @@ class_name GameRoom
 const Enemy = preload("res://Enemy.tscn")
 const Portal = preload("res://Portal.tscn")
 
+const ice_bg = preload("res://Pixels/Ice/ice_final.png")
+const fire_bg = preload("res://Pixels/Fire/fire_final.png")
+
 const PORTAL_LOCATIONS = [
 	Vector2(312, 696),
 	Vector2(24, 312),
@@ -14,7 +17,7 @@ const PORTAL_LOCATIONS = [
 var num_monsters_min = 2
 var num_monsters_max = 4
 var difficulty = 1
-var type = GameRoomManager.TYPE.FIRE
+var type = GameRoomManager.TYPE.FIRE setget set_type
 var player
 
 func _ready():
@@ -44,6 +47,7 @@ func generate_portals():
 	var angle = 0
 	for location in PORTAL_LOCATIONS:
 		var portal = Portal.instance()
+		portal.set_type(type)
 		call_deferred("add_child", portal)
 		portal.position = location
 		portal.rotation_degrees = angle
@@ -54,6 +58,17 @@ func generate_portals():
 func set_player(new_player):
 	player = new_player
 	player.position = position + Vector2(320, 360)
+
+func set_type(new_type):
+	type = new_type
+	match type:
+		GameRoomManager.TYPE.FIRE:
+			$Sprite.texture = fire_bg
+		GameRoomManager.TYPE.ICE:
+			$Sprite.texture = ice_bg
+		GameRoomManager.TYPE.GRASS:
+			pass
 	
+
 func get_enemies():
 	return $Enemies.get_children()

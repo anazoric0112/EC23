@@ -42,7 +42,11 @@ func _on_Timer_timeout():
 
 
 func take_damage(damage):
+	if !alive:
+		return
 	curr_hp -= damage
+	$Explosions.show()
+	$Explosions.play("on_hit")
 	if curr_hp <= 0:
 		die()
 
@@ -52,14 +56,14 @@ func die():
 	alive = false
 	GameRoomManager.enemy_count -= 1
 	print("Dead, enemy count: " + str(GameRoomManager.enemy_count))
-	queue_free()
+	$Explosions.show()
+	$Explosions.play("explode")
 
 func _on_Enemy_body_entered(body):	
 	if body.is_in_group("Projectiles"):
 		body.on_hit(self)
-	if body.is_in_group("Players"):
+	if body.is_in_group("Players") and !alive:
 		body.take_damage(body_damage)
-		body.invincible(0.5)
 
 func stop():
 	$Timer.stop()
@@ -67,14 +71,14 @@ func stop():
 func set_type(type):
 	match type:
 		GameRoomManager.TYPE.FIRE:
-			self.reload_time = (rand_range(1000, 1500) - 50 * level) / 1000
-			projectile_speed = 400
+			self.reload_time = (rand_range(1200, 1500) - 50 * level) / 1000
+			projectile_speed = 300
 			max_hp = 60 + 10 * level
 			curr_hp = max_hp
 			damage = 15 + 2 * level
 		GameRoomManager.TYPE.ICE:
-			self.reload_time = (rand_range(1200, 1700) - 40 * level) / 1000
-			projectile_speed = 300
+			self.reload_time = (rand_range(1500, 1700) - 40 * level) / 1000
+			projectile_speed = 250
 			max_hp = 75 + 15 * level
 			curr_hp = max_hp
 			damage = 20 + 3 * level
@@ -84,3 +88,9 @@ func set_type(type):
 			max_hp = 125 + 25 * level
 			curr_hp = max_hp
 			damage = 30 + 4 * level
+
+
+func _on_Explosions_animation_finished():
+	if $Explosions.animation == "explode":
+		queue_free()
+	$Explosions.hide()

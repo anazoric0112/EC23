@@ -160,7 +160,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="ShootingTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.25
 one_shot = true
 
 [node name="InvincibleTimer" type="Timer" parent="."]

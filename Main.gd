@@ -42,3 +42,5 @@ func game_over():
 	for room in $Rooms.get_children():
 		for enemy in room.get_enemies():
 			enemy.stop()
+	$PlayerLeft.on_die()
+	$PlayerRight.on_die()
