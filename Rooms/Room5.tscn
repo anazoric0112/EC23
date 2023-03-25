@@ -16,3 +16,30 @@ position = Vector2( 448, 360 )
 
 [node name="WallI4" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( 192, 360 )
+
+[node name="Node2D" type="Node2D" parent="EnemyLocations" index="0"]
+position = Vector2( 174, 183 )
+
+[node name="Node2D2" type="Node2D" parent="EnemyLocations" index="1"]
+position = Vector2( 92, 354 )
+
+[node name="Node2D3" type="Node2D" parent="EnemyLocations" index="2"]
+position = Vector2( 415, 187 )
+
+[node name="Node2D4" type="Node2D" parent="EnemyLocations" index="3"]
+position = Vector2( 423, 559 )
+
+[node name="Node2D5" type="Node2D" parent="EnemyLocations" index="4"]
+position = Vector2( 203, 524 )
+
+[node name="Node2D6" type="Node2D" parent="EnemyLocations" index="5"]
+position = Vector2( 502, 629 )
+
+[node name="Node2D7" type="Node2D" parent="EnemyLocations" index="6"]
+position = Vector2( 116, 625 )
+
+[node name="Node2D8" type="Node2D" parent="EnemyLocations" index="7"]
+position = Vector2( 506, 109 )
+
+[node name="Node2D9" type="Node2D" parent="EnemyLocations" index="8"]
+position = Vector2( 533, 369 )

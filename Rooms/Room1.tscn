@@ -19,3 +19,24 @@ rotation = -1.5708
 [node name="WallL4" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( 448, 192 )
 rotation = 3.14159
+
+[node name="Node2D" type="Node2D" parent="EnemyLocations" index="0"]
+position = Vector2( 84, 85 )
+
+[node name="Node2D2" type="Node2D" parent="EnemyLocations" index="1"]
+position = Vector2( 228, 237 )
+
+[node name="Node2D3" type="Node2D" parent="EnemyLocations" index="2"]
+position = Vector2( 419, 492 )
+
+[node name="Node2D4" type="Node2D" parent="EnemyLocations" index="3"]
+position = Vector2( 359, 88 )
+
+[node name="Node2D5" type="Node2D" parent="EnemyLocations" index="4"]
+position = Vector2( 541, 202 )
+
+[node name="Node2D6" type="Node2D" parent="EnemyLocations" index="5"]
+position = Vector2( 165, 633 )
+
+[node name="Node2D7" type="Node2D" parent="EnemyLocations" index="6"]
+position = Vector2( 84, 348 )
