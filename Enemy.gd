@@ -48,7 +48,6 @@ func die():
 	print("Dead, enemy count: " + str(GameRoomManager.enemy_count))
 	queue_free()
 
-
 func _on_Enemy_body_entered(body):	
 	if body.is_in_group("Projectiles"):
 		body.on_hit(self)
