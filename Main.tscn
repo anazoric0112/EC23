@@ -19,3 +19,11 @@ position = Vector2( 390, 293 )
 
 [node name="PlayerRight" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1064, 556 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.0352941, 0.294118, 0.623529, 1 )
+
+[node name="Tween" type="Tween" parent="."]

@@ -5,10 +5,10 @@ const Enemy = preload("res://Enemy.tscn")
 const Portal = preload("res://Portal.tscn")
 
 const PORTAL_LOCATIONS = [
-	Vector2(300, 700),
-	Vector2(20, 360),
-	Vector2(300, 20),
-	Vector2(620, 360)
+	Vector2(312, 696),
+	Vector2(24, 312),
+	Vector2(312, 24),
+	Vector2(616, 312)
 ]
 
 var num_monsters = 3
@@ -43,3 +43,4 @@ func generate_portals():
 
 func set_player(new_player):
 	player = new_player
+	player.position = position + Vector2(320, 360)
