@@ -4,15 +4,16 @@ class_name Enemy
 const Projectile = preload("res://Projectile.tscn")
 const PROJECTILE_DIST = 40
 var player
-var reload_time = 100
+var reload_time = 1500
 var projectile_speed = 300
-var max_hp = 500
+var max_hp = 30
 var curr_hp = max_hp
 var damage = 10
 
 func _ready():
 	$Timer.wait_time = reload_time * 1.0 / 1000
 	$Timer.start()
+	GameRoomManager.enemy_count += 1
 
 func shoot(target_position):
 	var projectile = Projectile.instance()
@@ -39,6 +40,9 @@ func _on_CollisionArea_body_entered(body):
 func take_damage(damage):
 	curr_hp -= damage
 	if curr_hp <= 0:
-		print("AAAAAGGHHH")
-		queue_free()
-	print("OUCH; my current hp is " + str(curr_hp))
+		die()
+
+func die():
+	GameRoomManager.enemy_count -= 1
+	print("Dead, enemy count: " + str(GameRoomManager.enemy_count))
+	queue_free()

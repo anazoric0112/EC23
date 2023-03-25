@@ -9,3 +9,7 @@ func add_rooms(room_left, room_right):
 	room_right.global_position = Vector2(640, 0)
 	room_right.set_player($PlayerRight)
 	$Rooms.call_deferred("add_child", room_right)
+
+func generate_portals():
+	for room in $Rooms.get_children():
+		room.generate_portals()

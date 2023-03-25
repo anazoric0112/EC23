@@ -20,7 +20,6 @@ func set_direction(dir):
 func on_hit(target):
 	if (target != null):
 		target.take_damage(damage)
-	print("HIT!")
 	queue_free()
 
 

@@ -52,7 +52,7 @@ func try_shoot(direction):
 func _physics_process(_delta):
 	get_move_input()
 	get_shoot_input()
-	move_and_collide(velocity * _delta * speed)
+	move_and_slide(velocity * speed)
 
 func _on_CollisionArea_body_entered(body):
 	if body.is_in_group("Projectiles"):
