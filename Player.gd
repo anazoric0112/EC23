@@ -10,6 +10,7 @@ var velocity
 var is_flipped = false
 var speed = 400
 var projectile_speed = 700
+var damage = 50
 var max_hp = 500
 var curr_hp = max_hp
 var dead = false
@@ -25,8 +26,12 @@ func shoot(direction):
 	get_parent().add_child(projectile)
 	projectile.direction = direction
 	projectile.speed = projectile_speed
+	projectile.damage = damage
 	projectile.global_position = global_position + direction * PROJECTILE_DIST
 	$ShootingTimer.start()
+
+func reduce_reload_time():
+	$ShootingTimer.wait_time *= 0.9
 
 func get_move_input():
 	if dead:
@@ -93,3 +98,7 @@ func on_die():
 
 func invincible(time):
 	$InvincibleTimer.start(time)
+
+func update_hp_bar():
+	$HealthBar.max_value = max_hp
+	$HealthBar.value = curr_hp

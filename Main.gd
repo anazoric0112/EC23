@@ -28,6 +28,25 @@ func generate_portals():
 	for room in $Rooms.get_children():
 		room.generate_portals()
 
+func upgrade_players():
+	var type = $Rooms.get_child(0).type
+	match type:
+		GameRoomManager.TYPE.FIRE:
+			print("Upgrading RELOAD")
+			$PlayerLeft.reduce_reload_time()
+			$PlayerRight.reduce_reload_time()
+		GameRoomManager.TYPE.ICE:
+			print("Upgrading DAMAGE")
+			$PlayerLeft.damage += 20
+			$PlayerRight.damage += 20
+		GameRoomManager.TYPE.GRASS:
+			print("Upgrading HP")
+			$PlayerLeft.max_hp += 100
+			$PlayerLeft.curr_hp += 100
+			$PlayerLeft.update_hp_bar()
+			$PlayerRight.max_hp += 100
+			$PlayerRight.curr_hp += 100
+			$PlayerRight.update_hp_bar()
 
 func _on_PlayerLeft_died():
 	game_over()

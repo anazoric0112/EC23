@@ -15,6 +15,7 @@ const Rooms = [
 
 var enemy_count = 0 setget set_enemy_count
 var level = 0
+var score = 0
 
 func generate_rooms(room_type):
 	print("Generating rooms of type " + str(room_type))
@@ -27,6 +28,8 @@ func generate_rooms(room_type):
 func set_enemy_count(value):
 	enemy_count = value
 	if enemy_count == 0:
-		get_node("/root/Main").generate_portals()
 		level += 1
+		get_node("/root/Main").upgrade_players()
+		get_node("/root/Main").generate_portals()
+		score += 100 + 25 * level
 		print("LEVELUP")

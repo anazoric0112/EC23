@@ -55,6 +55,7 @@ func die():
 	if not alive:
 		return
 	alive = false
+	GameRoomManager.score += 20 + 5 * level
 	GameRoomManager.enemy_count -= 1
 	print("Dead, enemy count: " + str(GameRoomManager.enemy_count))
 	$Explosions.show()
