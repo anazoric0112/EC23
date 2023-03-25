@@ -53,3 +53,4 @@ func _on_Enemy_body_entered(body):
 		body.on_hit(self)
 	if body.is_in_group("Players"):
 		body.take_damage(body_damage)
+		body.invincible(0.5)

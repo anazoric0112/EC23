@@ -21,7 +21,7 @@ func shoot(direction):
 	projectile.direction = direction
 	projectile.speed = projectile_speed
 	projectile.global_position = global_position + direction * PROJECTILE_DIST
-	$Timer.start()
+	$ShootingTimer.start()
 
 func get_move_input():
 	velocity = Vector2()
@@ -42,7 +42,7 @@ func get_shoot_input():
 		try_shoot(get_viewport().get_mouse_position())
 
 func try_shoot(direction):
-	if $Timer.time_left > 0:
+	if $ShootingTimer.time_left > 0:
 		return
 	var center = get_viewport_rect().get_center().x
 	if global_position.x < center and direction.x < center:
@@ -60,5 +60,10 @@ func _on_CollisionArea_body_entered(body):
 		body.on_hit(self)
 
 func take_damage(damage):
-	print("OUCH I took " + str(damage))
+	if $InvincibleTimer.time_left > 0:
+		return
 	curr_hp -= damage
+	print("OUCH I just took " + str(damage) + " damage")
+
+func invincible(time):
+	$InvincibleTimer.start(time)
