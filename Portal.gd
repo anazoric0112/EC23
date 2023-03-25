@@ -3,9 +3,9 @@ extends Node2D
 var room_type = GameRoomManager.TYPE.FIRE
 
 signal player_entered
-const fire_icon = preload("res://Pixels/Icons/IceSet-4.png.png")
-const ice_icon = preload("res://Pixels/Icons/IceSet-5.png.png")
-const grass_icon = preload("res://Pixels/Icons/IceSet-6.png.png")
+const fire_icon = preload("res://Pixels/Icons/fire_icon.png")
+const ice_icon = preload("res://Pixels/Icons/ice_icon.png")
+const grass_icon = preload("res://Pixels/Icons/grass_icon.png")
 
 const fire = preload("res://Pixels/Fire/IceSet_w-2.png-1.png (2).png")
 const ice = preload("res://Pixels/Ice/IceSet_ww-1.png.png")

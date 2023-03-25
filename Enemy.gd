@@ -12,6 +12,10 @@ var damage = 10
 var body_damage = 40
 var alive = true
 
+var inverse_steering = false
+
+const void_frames = preload("res://Void.tres")
+
 var level = 0
 
 func _ready():
@@ -79,6 +83,8 @@ func set_type(type):
 			curr_hp = max_hp
 			damage = 20 + 3 * level
 		GameRoomManager.TYPE.GRASS:
+			$Sprite.frames = void_frames
+			inverse_steering = true
 			self.reload_time = (rand_range(1500, 2000) - 30 * level) / 1000
 			projectile_speed = 200
 			max_hp = 125 + 25 * level
@@ -112,3 +118,17 @@ func _on_Sprite_animation_finished():
 	projectile.set_collision_layer_bit(3, true)
 	$Sprite.play("Shooting")
 	$Sprite.frame = 0
+
+func _process(delta):
+	if player == null:
+		return
+	if global_position.x - player.global_position.x < 0:
+		if inverse_steering:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true 
+	else:		
+		if inverse_steering:
+			$Sprite.flip_h = true
+		else:
+			$Sprite.flip_h = false
