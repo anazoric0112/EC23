@@ -67,6 +67,11 @@ func set_player(new_player):
 	player.position = position + Vector2(320, 360)
 
 func set_type(new_type):
+	if new_type == GameRoomManager.TYPE.GRASS:
+		for obstacle in $Walls.get_children():
+			obstacle.set_collision_layer_bit(2, false)
+			obstacle.set_collision_layer_bit(4, true)
+		
 	type = new_type
 	match type:
 		GameRoomManager.TYPE.FIRE:
