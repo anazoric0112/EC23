@@ -56,6 +56,9 @@ func spawn_enemy():
 func generate_portals():
 	var angle = 0
 	for location in PORTAL_LOCATIONS:
+		if (randi() % 2 == 1):
+			angle += 90
+			continue
 		var portal = Portal.instance()
 		call_deferred("add_child", portal)
 		portal.set_old_type(type)
