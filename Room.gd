@@ -47,8 +47,8 @@ func generate_portals():
 	var angle = 0
 	for location in PORTAL_LOCATIONS:
 		var portal = Portal.instance()
-		portal.set_type(type)
 		call_deferred("add_child", portal)
+		portal.set_old_type(type)
 		portal.position = location
 		portal.rotation_degrees = angle
 		angle += 90
@@ -68,6 +68,8 @@ func set_type(new_type):
 			$Sprite.texture = ice_bg
 		GameRoomManager.TYPE.GRASS:
 			pass
+	for wall in $Walls.get_children():
+		wall.set_type(new_type)
 	
 
 func get_enemies():

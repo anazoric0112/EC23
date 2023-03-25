@@ -17,28 +17,22 @@ var level = 0
 func _ready():
 	GameRoomManager.enemy_count += 1
 	level = GameRoomManager.level
+	$Sprite.play("Idle")
 
 func set_reload_time(value):
 	reload_time = value
-	$Timer.wait_time = value
-	$Timer.start()
+	$Timer.start(value)
 
-func shoot(target_position):
-	var projectile = Projectile.instance()
-	get_parent().add_child(projectile)
-	var projectile_direction = target_position - global_position
-	projectile_direction = projectile_direction.normalized()
-	projectile.direction = projectile_direction
-	projectile.global_position = global_position + projectile_direction * PROJECTILE_DIST
-	projectile.speed = projectile_speed
-	projectile.damage = damage
-	projectile.set_collision_layer_bit(1, false)
-	projectile.set_collision_layer_bit(3, true)
+func shoot():
+	$Sprite.speed_scale = 1.0 / (reload_time)
+	print($Sprite.speed_scale)
+	$Sprite.play("Shooting")
+
 
 func _on_Timer_timeout():
 	if player == null:
 		return
-	shoot(player.global_position)
+	shoot()
 
 
 func take_damage(damage):
@@ -98,3 +92,23 @@ func _on_Explosions_animation_finished():
 	if $Explosions.animation == "explode":
 		queue_free()
 	$Explosions.hide()
+
+
+func _on_Sprite_animation_finished():
+	if player == null:
+		return
+	if $Sprite.animation == "Idle":
+		return
+	var target_position = player.global_position
+	var projectile = Projectile.instance()
+	get_parent().add_child(projectile)
+	var projectile_direction = target_position - global_position
+	projectile_direction = projectile_direction.normalized()
+	projectile.direction = projectile_direction
+	projectile.global_position = global_position + projectile_direction * PROJECTILE_DIST
+	projectile.speed = projectile_speed
+	projectile.damage = damage
+	projectile.set_collision_layer_bit(1, false)
+	projectile.set_collision_layer_bit(3, true)
+	$Sprite.play("Shooting")
+	$Sprite.frame = 0

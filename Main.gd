@@ -2,13 +2,23 @@ extends Node2D
 
 var adding_rooms = false
 
+func _ready():
+	GameRoomManager.generate_rooms(GameRoomManager.TYPE.ICE)
+
 func add_rooms(room_left, room_right):
 	if adding_rooms:
 		room_left.queue_free()
 		room_right.queue_free()
 		return
 	adding_rooms = true
-	$Tween.interpolate_property($ColorRect, "modulate:a", 0, 1, .5)
+	match room_left.type:
+		GameRoomManager.TYPE.FIRE:
+			$ColorRect.modulate = Color.red
+		GameRoomManager.TYPE.ICE:
+			$ColorRect.modulate = Color.blue
+		GameRoomManager.TYPE.GRASS:
+			$ColorRect.modulate = Color.green
+	$Tween.interpolate_property($ColorRect, "modulate:a", 0, 1, 1)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
 	for room in $Rooms.get_children():
@@ -19,7 +29,7 @@ func add_rooms(room_left, room_right):
 	room_right.global_position = Vector2(640, 0)
 	room_right.set_player($PlayerRight)
 	$Rooms.call_deferred("add_child", room_right)
-	$Tween.interpolate_property($ColorRect, "modulate:a", 1, 0, .5)
+	$Tween.interpolate_property($ColorRect, "modulate:a", 1, 0, 1)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
 	adding_rooms = false

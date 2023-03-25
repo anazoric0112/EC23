@@ -5,18 +5,6 @@
 
 [node name="Room" instance=ExtResource( 1 )]
 
-[node name="WallI" parent="." index="6" instance=ExtResource( 2 )]
-position = Vector2( 320, 144 )
-
-[node name="WallI2" parent="." index="7" instance=ExtResource( 2 )]
-position = Vector2( 320, 576 )
-
-[node name="WallI3" parent="." index="8" instance=ExtResource( 2 )]
-position = Vector2( 448, 360 )
-
-[node name="WallI4" parent="." index="9" instance=ExtResource( 2 )]
-position = Vector2( 192, 360 )
-
 [node name="Node2D" type="Node2D" parent="EnemyLocations" index="0"]
 position = Vector2( 174, 183 )
 
@@ -38,8 +26,17 @@ position = Vector2( 502, 629 )
 [node name="Node2D7" type="Node2D" parent="EnemyLocations" index="6"]
 position = Vector2( 116, 625 )
 
-[node name="Node2D8" type="Node2D" parent="EnemyLocations" index="7"]
-position = Vector2( 506, 109 )
-
-[node name="Node2D9" type="Node2D" parent="EnemyLocations" index="8"]
+[node name="Node2D9" type="Node2D" parent="EnemyLocations" index="7"]
 position = Vector2( 533, 369 )
+
+[node name="WallI" parent="Walls" index="0" instance=ExtResource( 2 )]
+position = Vector2( 320, 144 )
+
+[node name="WallI2" parent="Walls" index="1" instance=ExtResource( 2 )]
+position = Vector2( 320, 576 )
+
+[node name="WallI3" parent="Walls" index="2" instance=ExtResource( 2 )]
+position = Vector2( 448, 360 )
+
+[node name="WallI4" parent="Walls" index="3" instance=ExtResource( 2 )]
+position = Vector2( 192, 360 )
