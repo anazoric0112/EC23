@@ -20,7 +20,7 @@ var rooms = []
 var enemy_count = 0 setget set_enemy_count
 
 func generate_rooms(room_type):
-	print("Generating rooms of type " + room_type)
+	print("Generating rooms of type " + str(room_type))
 	var room_left = Rooms[randi() % Rooms.size()].instance()
 	var room_right = Rooms[randi() % Rooms.size()].instance()
 	get_node("/root/Main").add_rooms(room_left, room_right)

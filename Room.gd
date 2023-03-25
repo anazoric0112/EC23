@@ -22,7 +22,7 @@ func _ready():
 
 func spawn_enemies():
 	var positions = $EnemyLocations.get_children()
-	positions.randomize()
+	positions.shuffle()
 	for i in range(randi() % (num_monsters_max - num_monsters_min + 1) + num_monsters_min):
 		var enemy = spawn_enemy()
 		if positions.size() > 0:
