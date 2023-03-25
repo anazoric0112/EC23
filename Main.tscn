@@ -4,10 +4,10 @@
 [ext_resource path="res://Room.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://GameOver.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Prototype.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://VCR_OSD_MONO.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Label.gd" type="Script" id=6]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 5 )
 
@@ -46,12 +46,12 @@ color = Color( 0.0352941, 0.294118, 0.623529, 1 )
 [node name="GameOver" parent="." instance=ExtResource( 4 )]
 visible = false
 
-[node name="Label" type="Label" parent="."]
-margin_left = 525.0
-margin_right = 755.0
-margin_bottom = 80.0
+[node name="Stats" type="Label" parent="."]
+margin_left = 515.0
+margin_right = 765.0
+margin_bottom = 69.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 custom_styles/normal = SubResource( 2 )
 text = "POINTS: 17000
 LEVEL: 5"
