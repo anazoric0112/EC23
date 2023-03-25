@@ -54,3 +54,6 @@ func _on_Enemy_body_entered(body):
 	if body.is_in_group("Players"):
 		body.take_damage(body_damage)
 		body.invincible(0.5)
+
+func stop():
+	$Timer.stop()

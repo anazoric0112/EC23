@@ -27,3 +27,18 @@ func add_rooms(room_left, room_right):
 func generate_portals():
 	for room in $Rooms.get_children():
 		room.generate_portals()
+
+
+func _on_PlayerLeft_died():
+	game_over()
+
+func _on_PlayerRight_died():
+	game_over()
+
+func game_over():
+	$GameOver.visible = true
+	$PlayerLeft.dead = true
+	$PlayerRight.dead = true
+	for room in $Rooms.get_children():
+		for enemy in room.get_enemies():
+			enemy.stop()
