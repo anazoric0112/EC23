@@ -11,3 +11,6 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Players"):
 		emit_signal("player_entered", room_type)
+
+func get_sprite():
+	return $Sprite

@@ -40,6 +40,8 @@ func generate_portals():
 		portal.position = location
 		portal.rotation_degrees = angle
 		angle += 90
+		if location.x > 312:
+			portal.get_sprite().flip_h = true;
 
 func set_player(new_player):
 	player = new_player
