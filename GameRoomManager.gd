@@ -1,7 +1,7 @@
 extends Node
 
 enum TYPE {
-	FIRE, ICE, GRASS
+	FIRE, ICE, GRASS, MOON
 }
 
 const Rooms = [

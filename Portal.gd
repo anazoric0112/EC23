@@ -10,6 +10,7 @@ const grass_icon = preload("res://Pixels/Icons/grass_icon.png")
 const fire = preload("res://Pixels/Fire/IceSet_w-2.png-1.png (2).png")
 const ice = preload("res://Pixels/Ice/IceSet_ww-1.png.png")
 const grass = preload("res://Pixels/Grass/New Piskel-10.png (2).png")
+const moon = preload("res://Pixels/Moon/moondoor.png")
 
 func _ready():
 	room_type = GameRoomManager.TYPE.values()[randi() % GameRoomManager.TYPE.size()]
@@ -21,6 +22,8 @@ func _ready():
 			$Type.texture = ice_icon
 		GameRoomManager.TYPE.GRASS:
 			$Type.texture = grass_icon
+		GameRoomManager.TYPE.MOON:
+			$Type.texture = null
 	connect("player_entered", GameRoomManager, "generate_rooms")
 
 func _on_Area2D_body_entered(body):
@@ -41,3 +44,5 @@ func set_old_type(type):
 			$Sprite.texture = ice
 		GameRoomManager.TYPE.GRASS:
 			$Sprite.texture = grass
+		GameRoomManager.TYPE.MOON:
+			$Sprite.texture = moon

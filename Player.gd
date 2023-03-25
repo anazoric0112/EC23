@@ -8,7 +8,7 @@ const PROJECTILE_DIST = 40
 
 var velocity
 var is_flipped = false
-var speed = 400
+var speed = 300
 var projectile_speed = 700
 var damage = 50
 var max_hp = 500

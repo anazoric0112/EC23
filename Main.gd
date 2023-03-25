@@ -18,6 +18,8 @@ func add_rooms(room_left, room_right):
 			$ColorRect.modulate = Color.blue
 		GameRoomManager.TYPE.GRASS:
 			$ColorRect.modulate = Color.green
+		GameRoomManager.TYPE.MOON:
+			$ColorRect.modulate = Color.burlywood
 	$Tween.interpolate_property($ColorRect, "modulate:a", 0, 1, 1)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
@@ -57,6 +59,10 @@ func upgrade_players():
 			$PlayerRight.max_hp += 100
 			$PlayerRight.curr_hp += 100
 			$PlayerRight.update_hp_bar()
+		GameRoomManager.TYPE.MOON:
+			print("Upgrading SPEED")
+			$PlayerLeft.speed += 60
+			$PlayerRight.speed += 60
 
 func _on_PlayerLeft_died():
 	game_over()

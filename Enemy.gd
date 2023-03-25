@@ -15,6 +15,7 @@ var alive = true
 var inverse_steering = false
 
 const void_frames = preload("res://Void.tres")
+const goblin_frames = preload("res://Goblin.tres")
 
 var level = 0
 
@@ -77,6 +78,7 @@ func set_type(type):
 			curr_hp = max_hp
 			damage = 15 + 2 * level
 		GameRoomManager.TYPE.ICE:
+			$Sprite.frames = goblin_frames
 			self.reload_time = (rand_range(1500, 1700) - 40 * level) / 1000
 			projectile_speed = 250
 			max_hp = 75 + 15 * level
@@ -90,6 +92,12 @@ func set_type(type):
 			max_hp = 125 + 25 * level
 			curr_hp = max_hp
 			damage = 30 + 4 * level
+		GameRoomManager.TYPE.MOON:
+			self.reload_time = (rand_range(1000, 2000) - 40 * level) / 1000
+			projectile_speed = int(rand_range(150, 350))
+			max_hp = 75 + 20 * level
+			curr_hp = max_hp
+			damage = rand_range(15, 35) + 4 * level
 	$HealthBar.max_value = max_hp
 	curr_hp = max_hp
 	$HealthBar.value = curr_hp
