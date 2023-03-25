@@ -43,3 +43,4 @@ func generate_portals():
 
 func set_player(new_player):
 	player = new_player
+	player.position = global_position + Vector2(320, 360)
