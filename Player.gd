@@ -87,6 +87,7 @@ func take_damage(damage):
 		return
 	curr_hp -= damage
 	invincible(.5)
+	blink_red()
 	$HealthBar.value = curr_hp
 	if curr_hp <= 0:
 		dead = true
@@ -102,3 +103,20 @@ func invincible(time):
 func update_hp_bar():
 	$HealthBar.max_value = max_hp
 	$HealthBar.value = curr_hp
+
+func blink_red():
+	var duration = 0.25
+	var num_blinks = 6
+	var tween = Tween.new()
+	add_child(tween)
+
+	var start_color = Color(1, 1, 1, 1)
+	var end_color = Color(1, 0, 0, 1)
+	for i in range(num_blinks-1):
+		tween.interpolate_property($AnimatedSprite, "modulate", start_color, end_color, duration/num_blinks, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
+		yield(tween, "tween_all_completed")
+		tween.interpolate_property($AnimatedSprite, "modulate", end_color, start_color, duration/num_blinks, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
+		yield(tween, "tween_all_completed")
+	remove_child(tween)
