@@ -43,6 +43,7 @@ func _on_Timer_timeout():
 
 func take_damage(damage):
 	curr_hp -= damage
+	$HealthBar.value = curr_hp
 	if curr_hp <= 0:
 		die()
 
@@ -84,3 +85,6 @@ func set_type(type):
 			max_hp = 125 + 25 * level
 			curr_hp = max_hp
 			damage = 30 + 4 * level
+	$HealthBar.max_value = max_hp
+	curr_hp = max_hp
+	$HealthBar.value = curr_hp

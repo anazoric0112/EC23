@@ -17,6 +17,8 @@ var dead = false
 func _ready():
 	add_to_group("Players")
 	Shooting.register_player(self)
+	$HealthBar.max_value = max_hp
+	$HealthBar.value = max_hp
 
 func shoot(direction):
 	var projectile = Projectile.instance()
@@ -77,6 +79,7 @@ func take_damage(damage):
 	if $InvincibleTimer.time_left > 0:
 		return
 	curr_hp -= damage
+	$HealthBar.value = curr_hp
 	if curr_hp <= 0:
 		dead = true
 		emit_signal("died")
