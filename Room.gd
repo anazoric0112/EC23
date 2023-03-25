@@ -37,6 +37,7 @@ func spawn_enemy():
 	var enemy = Enemy.instance()
 	$Enemies.add_child(enemy)
 	enemy.player = player
+	enemy.set_type(type)
 	return enemy
 
 func generate_portals():
