@@ -33,15 +33,15 @@ func get_move_input():
 		velocity = Vector2(0, 0)
 		return
 	velocity = Vector2()
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("d"):
 		is_flipped = false
 		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("a"):
 		is_flipped = true
 		velocity.x -= 1
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("s"):
 		velocity.y += 1
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("w"):
 		velocity.y -= 1
 	velocity = velocity.normalized()
 
