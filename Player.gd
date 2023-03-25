@@ -6,8 +6,8 @@ const PROJECTILE_DIST = 40
 
 var velocity
 var is_flipped = false
-var speed = 500
-var can_shoot=true
+var speed = 400
+var projectile_speed = 700
 var max_hp = 500
 var curr_hp = max_hp
 
@@ -19,6 +19,7 @@ func shoot(direction):
 	var projectile = Projectile.instance()
 	get_parent().add_child(projectile)
 	projectile.direction = direction
+	projectile.speed = projectile_speed
 	projectile.global_position = global_position + direction * PROJECTILE_DIST
 	$Timer.start()
 

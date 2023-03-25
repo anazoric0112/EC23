@@ -4,6 +4,8 @@ var adding_rooms = false
 
 func add_rooms(room_left, room_right):
 	if adding_rooms:
+		room_left.queue_free()
+		room_right.queue_free()
 		return
 	adding_rooms = true
 	$Tween.interpolate_property($ColorRect, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), .5)

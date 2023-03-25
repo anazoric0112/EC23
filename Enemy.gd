@@ -5,7 +5,7 @@ const Projectile = preload("res://Projectile.tscn")
 const PROJECTILE_DIST = 40
 var player
 var reload_time = 1500
-var projectile_speed = 300
+var projectile_speed = 200
 var max_hp = 30
 var curr_hp = max_hp
 var damage = 10
@@ -47,7 +47,6 @@ func die():
 	GameRoomManager.enemy_count -= 1
 	print("Dead, enemy count: " + str(GameRoomManager.enemy_count))
 	queue_free()
-
 
 func _on_Enemy_body_entered(body):	
 	if body.is_in_group("Projectiles"):
